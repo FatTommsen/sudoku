@@ -8,9 +8,7 @@ public class Field {
 
 
     public Field(){
-        if(board[0].length != DEFAULT_SIZE){
-            throw new NumberFormatException();
-        }
+        board = new Cell[DEFAULT_SIZE][DEFAULT_SIZE];
         for(int i = 0; i < 3; i++){
             for (int j = 0; j < 3; j++) {
                 boxes[i][j] = new Box();
