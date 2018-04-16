@@ -16,8 +16,8 @@ public class Field {
                 boxes[i][j] = new Box();
             }
         }
-        for(int i = 0; i < 9; i++){
-            for (int j = 0; j < 9; j++){
+        for(int i = 0; i < DEFAULT_SIZE; i++){
+            for (int j = 0; j < DEFAULT_SIZE; j++){
                 Cell cell = new Cell();
                 board[i][j] = cell;
                 boxes[i / 3][j / 3].setValues(cell);
