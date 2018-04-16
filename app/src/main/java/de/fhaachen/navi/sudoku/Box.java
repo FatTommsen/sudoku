@@ -3,9 +3,9 @@ package de.fhaachen.navi.sudoku;
 import java.util.List;
 
 public class Box {
-    List<Integer> values;
+    List<Cell> values;
 
-    public Box(List<Integer> values){
+    public Box(List<Cell> values){
         this.values = values;
     }
 
@@ -13,8 +13,9 @@ public class Box {
 
     }
 
-    public void setValues(int value){
-        values.add(value);
+    public void setValues(Cell cell){
+        values.add(cell);
     }
+
 
 }

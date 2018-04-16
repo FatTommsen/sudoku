@@ -6,11 +6,9 @@ import java.util.List;
 public class Cell {
     private int value;
     private List<Integer> possibleValues;
-    private Box box;
 
-    public Cell(int value, Box box){
+    public Cell(int value){
         this.value = value;
-        this.box = box;
     }
 
     public Cell(){
@@ -22,17 +20,16 @@ public class Cell {
         this.possibleValues = possibleValues;
     }
 
-    public boolean isMoveAvaliable(int value){
-        for(int i = 0; i < 3; i++){
-            for (int j = 0; j < 3; j++){
-                if(box.getValue(i, j) != value){
-                    return false;
-                }
-            }
-        }
-        return possibleValues.contains(value);
-
-    }
+//    public boolean isMoveAvaliable(int value){
+//        for(int i = 0; i < 3; i++){
+//            for (int j = 0; j < 3; j++){
+//                if(box.getValue(i, j) != value){
+//                    return false;
+//                }
+//            }
+//        }
+//        return possibleValues.contains(value);
+//    }
 
     public void setValue(int value) {
         this.value = value;
