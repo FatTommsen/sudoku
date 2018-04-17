@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Sudoku.iml" filepath="$PROJECT_DIR$/Sudoku.iml" />
       <module fileurl="file://$PROJECT_DIR$/SudokuNew.iml" filepath="$PROJECT_DIR$/SudokuNew.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/SudokuNew-app.iml" filepath="$PROJECT_DIR$/app/SudokuNew-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
