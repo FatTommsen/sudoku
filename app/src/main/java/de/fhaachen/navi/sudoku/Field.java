@@ -26,4 +26,8 @@ public class Field {
     public void setCell(int x, int y, Cell cell){
         board[x][y] = cell;
     }
+
+
+
+
 }
