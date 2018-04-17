@@ -2,23 +2,28 @@ package de.fhaachen.navi.sudoku;
 
 public class Solver {
     private Field board;
-    private int iSolutionAmount = 0;
+    // mode 0 = gib die erste gefundene Lösung zurück.
+    // mode 1 = gib zurück ob das Feld eindeutig lösbar ist
+    // mode 2 = es wurde schon eine Lösung gefunden
+    // mode 3 = exit in Ausgangszustand
+    private int mode = 0;
+    private boolean bFound = false;
 
     public Solver( Field board){
+        mode = 0;
         this.board = board;
     }
-    public boolean backtrack(){
-        return backtrack( false );
-    }
 
-    private boolean backtrack(boolean bCount){
+
+    public boolean backtrack(){
         Cell c = board.findFirstUnsolved();
         if( c == null ) {
-            if( bCount ){
-                if( iSolutionAmount != 0 ){
-                    throw new IllegalArgumentException("");
-                }
-                iSolutionAmount ++;
+            if( mode == 1 ){
+                mode = 2;
+                return false;
+            }
+            else if( mode == 2 ){
+                mode = 3;
                 return false;
             }
             else{
@@ -28,8 +33,12 @@ public class Solver {
         for( int i = 1; i <= 9; i++ ){
             c.setValue(i);
             if ( board.isValid(true)){
-                if( backtrack( bCount ) ){
+                if( backtrack() ){
                     return true;
+                }
+                else if( mode == 3 ){
+                    c.setValue(0);
+                    return false;
                 }
             }
         }
@@ -37,13 +46,12 @@ public class Solver {
         return false;
     }
 
-    public boolean countSolutions(){
-        try {
-            backtrack(true);
+    public boolean isUnique(){
+        mode = 1;
+        backtrack();
+        if( mode == 2 ){
+            return true;
         }
-        catch( IllegalArgumentException e){
-            return false;
-        }
-        return true;
+        return false;
     }
 }
