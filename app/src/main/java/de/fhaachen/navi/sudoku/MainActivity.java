@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
         // neue activity -> Schwierigkeiten
         Intent levels = new Intent(getApplicationContext(), LevelActivity.class);
         startActivity(levels);
-
     }
 
     /**
