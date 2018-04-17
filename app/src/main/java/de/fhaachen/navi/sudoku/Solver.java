@@ -37,7 +37,7 @@ public class Solver {
         return false;
     }
 
-    public boolean countSolutions(){
+    public boolean isUnique(){
         try {
             backtrack(true);
         }
