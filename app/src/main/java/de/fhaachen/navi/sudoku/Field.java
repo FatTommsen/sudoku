@@ -9,6 +9,7 @@ public class Field {
 
     public Field(){
         board = new Cell[DEFAULT_SIZE][DEFAULT_SIZE];
+        boxes = new Box[3][3];
         for(int i = 0; i < 3; i++){
             for (int j = 0; j < 3; j++) {
                 boxes[i][j] = new Box();
@@ -16,7 +17,7 @@ public class Field {
         }
         for(int i = 0; i < DEFAULT_SIZE; i++){
             for (int j = 0; j < DEFAULT_SIZE; j++){
-                Cell cell = new Cell();
+                Cell cell = new Cell(0);
                 board[i][j] = cell;
                 boxes[i / 3][j / 3].setValues(cell);
             }
@@ -27,7 +28,112 @@ public class Field {
         board[x][y] = cell;
     }
 
+    public void setValue( int x, int y, int value ){
+        board[x][y].setValue( value );
+    }
 
+    public Cell findFirstUnsolved(){
+        for( Cell[] row: board){
+            for( Cell c : row ){
+                if( c.getValue() == 0 ){
+                    return c;
+                }
+            }
+        }
+        return null;
+    }
 
+    private boolean checkRow( boolean bInProgress, Cell[] cells ){
+            boolean[] bValues = new boolean[9];
+            for( Cell c : cells ){
+                if( c.getValue() != 0 ){
+                    if( !bValues[c.getValue() -1 ] ){
+                        bValues[ c.getValue() - 1 ] = true;
+                    }
+                    else return false;
+                }
+                else if ( !bInProgress ){
+                    return false;
+                }
+            }
+            return true;
+    }
 
+    public boolean isColValid( boolean bInProgress ){
+        for( Cell[] col: board ) {
+            if( !checkRow( bInProgress, col )){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isRowValid( boolean bInProgress ){
+        for( int y = 0; y < board[0].length; y++ ){
+            Cell[] row = new Cell[9];
+            for( int x = 0; x < 9; x++ ){
+                row[x] = board[x][y];
+            }
+            if( !checkRow( bInProgress,row )){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isBoxValid( boolean bInProgress ){
+        for( Box[] row : boxes ){
+            for( Box b : row ){
+                if( !b.isValid(bInProgress)){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean isValid(boolean bInProgress){
+        if( !isColValid(bInProgress)){
+            return false;
+        }
+        if( !isRowValid(bInProgress)){
+            return false;
+        }
+        if( !isBoxValid(bInProgress)){
+            return false;
+        }
+        return true;
+    }
+
+    public String toString(){
+        StringBuilder strBuild = new StringBuilder();
+        String strMaxBoundary = "=========================================\n";
+        String strMinBoundary = "-----------------------------------------\n";
+        strBuild.append( strMaxBoundary );
+        for( int y = 0; y < 9; y ++ ){
+            strBuild.append("||");
+            for( int x = 0; x < 9; x++ ){
+                strBuild.append(" ");
+                if( board[x][y].getValue() == 0 ){
+                    strBuild.append(" ");
+                }
+                else {
+                    strBuild.append(board[x][y].getValue());
+                }
+                strBuild.append( " ");
+                if( (x+1) % 3 == 0 ){
+                    strBuild.append("||");
+                }
+                else strBuild.append("|");
+            }
+            strBuild.append("\n");
+            if( (y+1) % 3 == 0 ){
+                strBuild.append(strMaxBoundary);
+            }
+            else{
+                strBuild.append(strMinBoundary);
+            }
+        }
+        return strBuild.toString();
+    }
 }
