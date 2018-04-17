@@ -23,7 +23,7 @@ public class LevelActivity extends AppCompatActivity {
      */
     public void levelModeEasy(View view){
         Intent levels = new Intent(getApplicationContext(), GameActivity.class);
-        levels.putExtra("difficulty", 1);
+      git   levels.putExtra("difficulty", 1);
         startActivity(levels);
     }
 
