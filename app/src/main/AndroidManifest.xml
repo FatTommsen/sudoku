@@ -23,6 +23,7 @@
 
         </activity>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
         <activity
@@ -33,6 +34,12 @@
 =======
         <activity android:name=".GameActivity" />
 >>>>>>> cf56ab702609e1963db329db819e5d9552ea595f
+=======
+        <activity
+
+            android:name=".GameActivity"
+            android:parentActivityName=".LevelActivity"/>
+>>>>>>> 8bfbfc04a1e610fa75defb301ba103abcec837e2
     </application>
 
 </manifest>
