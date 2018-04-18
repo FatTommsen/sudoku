@@ -2,13 +2,14 @@ package de.fhaachen.navi.sudoku;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public class LevelActivity extends AppCompatActivity {
-    private int EASY = 1;
-    private int MEDIUM = 2;
-    private int HARD = 3;
+    private int EASY = 40;
+    private int MEDIUM = 32;
+    private int HARD = 24;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +24,7 @@ public class LevelActivity extends AppCompatActivity {
      */
     public void levelModeEasy(View view){
         Intent levels = new Intent(getApplicationContext(), GameActivity.class);
-        levels.putExtra("difficulty", 1);
+        levels.putExtra("difficulty", EASY);
         startActivity(levels);
     }
 
@@ -34,7 +35,7 @@ public class LevelActivity extends AppCompatActivity {
      */
     public void levelModeMedium(View view){
         Intent levels = new Intent(getApplicationContext(), GameActivity.class);
-        levels.putExtra("difficulty", 2);
+        levels.putExtra("difficulty", MEDIUM);
         startActivity(levels);
     }
 
@@ -45,7 +46,7 @@ public class LevelActivity extends AppCompatActivity {
      */
     public void levelModeHard(View view){
         Intent levels = new Intent(getApplicationContext(), GameActivity.class);
-        levels.putExtra("difficulty", 3);
+        levels.putExtra("difficulty", HARD);
         startActivity(levels);
     }
 

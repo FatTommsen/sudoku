@@ -29,34 +29,31 @@
 
         </TableRow>
 
-        <TableLayout
-            android:id="@+id/tableLayout2"
-            android:layout_width="fill_parent"
+        <GridLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/gridlayout"
+            android:layout_width="match_parent"
             android:layout_height="340dp"
-            android:layout_marginTop="8dp">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </TableLayout>
+            android:columnCount="9"
+            android:rowCount="9"
+            android:orientation="horizontal"
+            tools:context=".GridXMLActivity" >
+        </GridLayout>
 
         <TableRow
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:weightSum="9">
+            android:weightSum="10">
+
+            <Button
+                android:id="@+id/buttonX"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="X" />
+
 
             <Button
                 android:id="@+id/button1"
