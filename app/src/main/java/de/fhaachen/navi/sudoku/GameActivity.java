@@ -28,8 +28,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void createGrid() {
-        Generator gen = new Generator();
-        Field f = gen.generateNewField(difficulty);
 
         GridLayout gl = findViewById(R.id.gridlayout);
 
@@ -38,12 +36,17 @@ public class GameActivity extends AppCompatActivity {
         display.getSize(size);
         int width = size.x - 16;
 
-        FieldUI fieldUI = new FieldUI(f, this, width / 9);
+        FieldUI fieldUI = new FieldUI( this, width / 9, difficulty);
 
         for (int i = 0; i < 9; i++) {
+            GridLayout g = new GridLayout(this);
+            g.setRowCount(3);
+            g.setColumnCount(3);
+            g.setBackground(this.getResources().getDrawable(R.drawable.box_border));
             for (int j = 0; j < 9; j++) {
-                gl.addView(fieldUI.getTextField(i, j));
+                g.addView(fieldUI.getBoxes().get(i).get(j));
             }
+            gl.addView(g);
         }
     }
 }

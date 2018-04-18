@@ -6,6 +6,8 @@ import java.util.List;
 public class Cell {
     private int value;
     private List<Integer> possibleValues;
+    boolean bFromBeginning = false;
+    boolean bVisible = true;
 
     public Cell(int value){
         this.value = value;
@@ -42,4 +44,21 @@ public class Cell {
     public void setPossibleValues(List<Integer> possibleValues) {
         this.possibleValues = possibleValues;
     }
+
+    public boolean isVisible(){
+        return bVisible;
+    }
+
+    public void setVisible( boolean bValue ){
+        bVisible = bValue;
+    }
+
+    public void setFromBeginning(boolean bValue){
+        bFromBeginning = bValue;
+    }
+
+    public boolean isFromBeginning(){
+        return bFromBeginning;
+    }
+
 }

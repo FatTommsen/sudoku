@@ -33,4 +33,8 @@ public class Box {
         }
         return true;
     }
+
+    public Cell getCell( int number ){
+        return values.get(number);
+    }
 }
