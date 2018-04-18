@@ -16,7 +16,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="200dp"
         android:background="#B3E5FC"
-        android:text="Neues Spiel"
+        android:text="@string/neues_spiel"
         android:onClick="createNewGame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -34,7 +34,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="#B3E5FC"
-        android:text="Sudoku Löser"
+        android:text="@string/sudoku_l_ser"
         android:onClick="createSolver"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,11 +51,11 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="#B3E5FC"
-        android:text="Meine Sudokus"
+        android:text="@string/meine_sudokus"
         android:onClick="mySudokus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_solver" />//>
+        app:layout_constraintTop_toBottomOf="@+id/button_solver" />
 
     <Button
         android:id="@+id/button_rules"
@@ -67,11 +67,11 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="#B3E5FC"
-        android:text="Regeln"
-        android:onClick="rules"
+        android:text="@string/info"
+        android:onClick="info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_mySudokus" />//>
+        app:layout_constraintTop_toBottomOf="@+id/button_mySudokus" />
 
     <TextView
         android:id="@+id/textView_header"
@@ -84,7 +84,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="100dp"
         android:gravity="center"
-        android:text="Sudoku"
+        android:text="@string/sudoku"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

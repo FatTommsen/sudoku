@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void createNewGame(View view){
-        // neue activity -> Schwierigkeiten
         Intent levels = new Intent(getApplicationContext(), LevelActivity.class);
         startActivity(levels);
     }
@@ -47,9 +46,9 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param view
      */
-    public void rules(View view){
-        Intent levels = new Intent(getApplicationContext(), RulesActivity.class);
-        startActivity(levels);
+    public void info(View view){
+        Intent info = new Intent(getApplicationContext(), RulesActivity.class);
+        startActivity(info);
     }
 
 
