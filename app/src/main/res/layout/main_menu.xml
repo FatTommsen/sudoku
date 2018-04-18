@@ -68,7 +68,7 @@
         android:layout_marginTop="8dp"
         android:background="#B3E5FC"
         android:text="Regeln"
-        android:onClick="rules"
+        android:onClick="info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_mySudokus" />//>
