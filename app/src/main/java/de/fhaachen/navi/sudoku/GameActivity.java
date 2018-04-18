@@ -13,8 +13,6 @@ public class GameActivity extends AppCompatActivity{
             intent = getIntent();
             System.out.println(intent.getExtras().getInt("difficulty"));
             setContentView(R.layout.game_view);
-            int zahl = Integer.parseInt(intent.getStringExtra("difficulty"));
-            System.out.println(zahl);
         }
 
 
