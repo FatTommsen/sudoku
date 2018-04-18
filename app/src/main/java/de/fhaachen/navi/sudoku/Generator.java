@@ -1,13 +1,22 @@
 package de.fhaachen.navi.sudoku;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Generator {
     Field field = new Field();
     Random rand = new Random();
 
-    // Level : schwer: 18-24 mittel: 25-31 leicht: 32 - 38
-    public Field generateNewField(int level) {
+    ArrayList<Cell> untouched;
+    ArrayList<Cell> progressed;
+
+    /**
+     *
+     * @param numberAmount Number of Cell that should be solved at the beginning.
+     * @return Field with numberAmount solved cells.
+     */
+
+    public Field generateNewField(int numberAmount) {
 
         for (int i = 1; i <= 9; i++) {
             int xRand = rand.nextInt(8);
@@ -17,38 +26,40 @@ public class Generator {
         Solver solver = new Solver(field);
         solver.backtrack();
 
-        if( level == 1 ){
-            deleteCells( 81 - 20);
+        int toDelete = 81 - numberAmount;
+
+        Field fOrigin = field.clone();
+        while( !deleteCells(toDelete) ){
+            field = fOrigin.clone();
         }
-        else if ( level == 2){
-            deleteCells( 81 - 29);
-        }
-        else {
-            deleteCells( 81 - 35);
-        }
+
         return field;
 
     }
 
-
-    public void deleteCells(int toDelete) {
-        int counter = toDelete;
-        while( counter > 0 ){
-            int xRand;
-            int yRand;
-            int oldValue;
-            do {
-                xRand = rand.nextInt(9);
-                yRand = rand.nextInt(9);
-            } while (field.getValue(xRand, yRand) == 0);
-            oldValue = field.getValue(xRand, yRand);
-            field.setValue(xRand, yRand, 0);
-            if( new Solver(field).isUnique() ){
-                counter--;
-            }
-            else {
-                field.setValue(xRand, yRand, oldValue);
+    public boolean deleteCells(int toDelete) {
+        ArrayList<Cell> untouched = new ArrayList<Cell>();
+        Solver solver = new Solver(field);
+        for (int x = 0; x < 9; x++) {
+            for (int y = 0; y < 9; y++) {
+                untouched.add(field.getCell(x, y));
             }
         }
+        while (untouched.size() > 0 && toDelete != 0) {
+            int rNum = rand.nextInt(untouched.size());
+            int oldValue = untouched.get(rNum).getValue();
+            untouched.get(rNum).setValue(0);
+            if (solver.isUnique()) {
+                toDelete--;
+            } else {
+                untouched.get(rNum).setValue(oldValue);
+            }
+            untouched.remove(rNum);
+        }
+        if (toDelete == 0) {
+            return true;
+        }
+        return false;
     }
+
 }

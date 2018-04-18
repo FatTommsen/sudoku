@@ -31,6 +31,11 @@ public class Field {
     public void setValue( int x, int y, int value ){
         board[x][y].setValue( value );
     }
+
+    public Cell getCell( int x, int y){
+        return board[x][y];
+    }
+
     public int getValue( int x, int y){ return board[x][y].getValue();}
 
     public Cell findFirstUnsolved(){
@@ -45,19 +50,19 @@ public class Field {
     }
 
     private boolean checkRow( boolean bInProgress, Cell[] cells ){
-            boolean[] bValues = new boolean[9];
-            for( Cell c : cells ){
-                if( c.getValue() != 0 ){
-                    if( !bValues[c.getValue() -1 ] ){
-                        bValues[ c.getValue() - 1 ] = true;
-                    }
-                    else return false;
+        boolean[] bValues = new boolean[9];
+        for( Cell c : cells ){
+            if( c.getValue() != 0 ){
+                if( !bValues[c.getValue() -1 ] ){
+                    bValues[ c.getValue() - 1 ] = true;
                 }
-                else if ( !bInProgress ){
-                    return false;
-                }
+                else return false;
             }
-            return true;
+            else if ( !bInProgress ){
+                return false;
+            }
+        }
+        return true;
     }
 
     public boolean isColValid( boolean bInProgress ){
@@ -136,5 +141,15 @@ public class Field {
             }
         }
         return strBuild.toString();
+    }
+
+    public Field clone(){
+        Field f = new Field();
+        for( int x = 0; x < 9; x++ ){
+            for( int y = 0; y < 9; y ++ ){
+                f.setValue( x, y, board[x][y].getValue());
+            }
+        }
+        return f;
     }
 }

@@ -2,15 +2,17 @@ package de.fhaachen.navi.sudoku;
 
 public class Solver {
     private Field board;
-    // mode 0 = gib die erste gefundene Lösung zurück.
-    // mode 1 = gib zurück ob das Feld eindeutig lösbar ist
-    // mode 2 = es wurde schon eine Lösung gefunden
-    // mode 3 = exit in Ausgangszustand
-    private int mode = 0;
+    private Mode mode;
     private boolean bFound = false;
+    private enum Mode{
+        FindFirstSolution,
+        UniqueTest,
+        UniqueOneFound,
+        UniqueAbort
+    }
 
     public Solver( Field board){
-        mode = 0;
+        mode = Mode.FindFirstSolution;
         this.board = board;
     }
 
@@ -18,12 +20,12 @@ public class Solver {
     public boolean backtrack(){
         Cell c = board.findFirstUnsolved();
         if( c == null ) {
-            if( mode == 1 ){
-                mode = 2;
+            if( mode == Mode.UniqueTest ){
+                mode = Mode.UniqueOneFound;
                 return false;
             }
-            else if( mode == 2 ){
-                mode = 3;
+            else if( mode == Mode.UniqueOneFound ){
+                mode = Mode.UniqueAbort;
                 return false;
             }
             else{
@@ -36,7 +38,7 @@ public class Solver {
                 if( backtrack() ){
                     return true;
                 }
-                else if( mode == 3 ){
+                else if( mode == Mode.UniqueAbort){
                     c.setValue(0);
                     return false;
                 }
@@ -47,9 +49,9 @@ public class Solver {
     }
 
     public boolean isUnique(){
-        mode = 1;
+        mode = Mode.UniqueTest;
         backtrack();
-        if( mode == 2 ){
+        if( mode == Mode.UniqueOneFound ){
             return true;
         }
         return false;
