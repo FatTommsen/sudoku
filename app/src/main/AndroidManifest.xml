@@ -21,15 +21,33 @@
             android:parentActivityName=".MainActivity">
 
         </activity>
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+
+        <activity
+            android:name=".GameActivity"
+            android:parentActivityName=".LevelActivity">
+
+        </activity>
+=======
+        <activity android:name=".GameActivity" />
+>>>>>>> cf56ab702609e1963db329db819e5d9552ea595f
+=======
         <activity
 
             android:name=".GameActivity"
+<<<<<<< HEAD
             android:parentActivityName=".LevelActivity" />
 
         <activity
 
             android:name=".RulesActivity"
             android:parentActivityName=".MainActivity" />
+=======
+            android:parentActivityName=".LevelActivity"/>
+>>>>>>> 8bfbfc04a1e610fa75defb301ba103abcec837e2
+>>>>>>> 90b1a6a261375d0308f5b45cb945414824060e48
     </application>
 
 </manifest>

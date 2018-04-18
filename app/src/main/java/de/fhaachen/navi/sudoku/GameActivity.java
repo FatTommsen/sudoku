@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 public class GameActivity extends AppCompatActivity{
-
         private Intent intent;
 
         @Override
@@ -14,6 +13,8 @@ public class GameActivity extends AppCompatActivity{
             intent = getIntent();
             System.out.println(intent.getExtras().getInt("difficulty"));
             setContentView(R.layout.game_view);
+            int zahl = Integer.parseInt(intent.getStringExtra("difficulty"));
+            System.out.println(zahl);
         }
 
 
