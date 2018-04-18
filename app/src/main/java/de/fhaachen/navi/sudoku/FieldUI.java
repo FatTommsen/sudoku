@@ -29,6 +29,7 @@ public class FieldUI {
                 if (number == 0) {
                     textField.setTextColor(COLOR_USER);
                     textField.setText(" ");
+                    //TODO SCHRIFT FETT
                 } else {
                     textField.setTextColor(COLOR_GENERATOR);
                     textField.setText(number + "");
