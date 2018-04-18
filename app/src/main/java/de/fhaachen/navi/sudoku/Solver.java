@@ -11,7 +11,7 @@ public class Solver {
         UniqueAbort
     }
 
-    public Solver( Field board){
+    public Solver(Field board){
         mode = Mode.FindFirstSolution;
         this.board = board;
     }
