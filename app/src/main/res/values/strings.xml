@@ -14,4 +14,9 @@
     in jeder Spalte, Zeile und jedem 3x3 Quadrat jede Zahl nur einmal vorkommt.</string>
     <string name="regeln">Regeln:</string>
     <string name="solver">Solver</string>
+    <string name="meine_sudokus">Meine Sudokus</string>
+    <string name="info">Info</string>
+    <string name="sudoku">Sudoku</string>
+    <string name="neues_spiel">Neues Spiel</string>
+    <string name="sudoku_l_ser">Sudoku Löser</string>
 </resources>

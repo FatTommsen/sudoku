@@ -23,7 +23,7 @@ public class LevelActivity extends AppCompatActivity {
      */
     public void levelModeEasy(View view){
         Intent levels = new Intent(getApplicationContext(), GameActivity.class);
-        levels.putExtra("difficulty", 1);
+        levels.putExtra("difficulty", EASY);
         startActivity(levels);
     }
 
@@ -34,7 +34,7 @@ public class LevelActivity extends AppCompatActivity {
      */
     public void levelModeMedium(View view){
         Intent levels = new Intent(getApplicationContext(), GameActivity.class);
-        levels.putExtra("difficulty", 2);
+        levels.putExtra("difficulty", MEDIUM);
         startActivity(levels);
     }
 
@@ -45,7 +45,7 @@ public class LevelActivity extends AppCompatActivity {
      */
     public void levelModeHard(View view){
         Intent levels = new Intent(getApplicationContext(), GameActivity.class);
-        levels.putExtra("difficulty", 3);
+        levels.putExtra("difficulty", HARD);
         startActivity(levels);
     }
 

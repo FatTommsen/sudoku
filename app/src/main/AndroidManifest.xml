@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="AllowBackup">
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,12 +18,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".LevelActivity"
             android:parentActivityName=".MainActivity"/>
+
         <activity
             android:name=".GameActivity"
-            android:parentActivityName=".LevelActivity" />
+            android:parentActivityName=".LevelActivity"/>
+
         <activity
             android:name=".RulesActivity"
             android:label="@string/title_activity_rules"
