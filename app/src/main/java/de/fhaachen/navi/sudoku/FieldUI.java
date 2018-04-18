@@ -49,7 +49,9 @@ public class FieldUI {
                         TextField oldTextField = currentTextField;
                         currentTextField = textField;
                         if (oldTextField != null) {
-                            oldTextField.setBackgroundColor(COLOR_NOT_SELECTED);
+                            oldTextField.setBackground(oldTextField.getResources().getDrawable(R.drawable.cell_border));
+
+                            // oldTextField.setBackgroundColor(COLOR_NOT_SELECTED);
                         }
                         if (currentTextField.getCurrentTextColor() != COLOR_GENERATOR) {
                             currentTextField.setBackgroundColor(COLOR_SELECTED);
