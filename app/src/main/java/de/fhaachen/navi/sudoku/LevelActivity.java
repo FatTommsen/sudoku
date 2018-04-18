@@ -2,13 +2,14 @@ package de.fhaachen.navi.sudoku;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public class LevelActivity extends AppCompatActivity {
-    private int EASY = 1;
-    private int MEDIUM = 2;
-    private int HARD = 3;
+    private int EASY = 40;
+    private int MEDIUM = 32;
+    private int HARD = 24;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

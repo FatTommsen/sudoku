@@ -18,8 +18,8 @@ public class Field {
         for(int i = 0; i < DEFAULT_SIZE; i++){
             for (int j = 0; j < DEFAULT_SIZE; j++){
                 Cell cell = new Cell(0);
-                board[i][j] = cell;
-                boxes[i / 3][j / 3].setValues(cell);
+                board[j][i] = cell;
+                boxes[j / 3][i / 3].setValues(cell);
             }
         }
     }
@@ -151,5 +151,9 @@ public class Field {
             }
         }
         return f;
+    }
+
+    public Cell getCellFromBox( int box, int number){
+        return boxes[ box / 3 ][box % 3 ].getCell(number);
     }
 }
