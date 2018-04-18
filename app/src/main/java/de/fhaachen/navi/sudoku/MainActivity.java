@@ -48,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void rules(View view){
-
+        Intent levels = new Intent(getApplicationContext(), RulesActivity.class);
+        startActivity(levels);
     }
 
 
