@@ -32,8 +32,18 @@ public class Generator {
         while( !deleteCells(toDelete) ){
             field = fOrigin.clone();
         }
+        for( int x = 0; x < 9; x++ ){
+            for( int y = 0; y < 9; y ++ ){
+                if( field.getValue(x,y) == 0){
+                    fOrigin.getCell(x,y).setVisible( false );
+                }
+                else{
+                    fOrigin.getCell(x,y).setFromBeginning( true );
+                }
+            }
+        }
 
-        return field;
+        return fOrigin;
 
     }
 

@@ -4,7 +4,10 @@ import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
 
+import java.util.ArrayList;
+
 public class FieldUI {
+
     private int COLOR_USER = Color.BLUE;
     private int COLOR_GENERATOR = Color.BLACK;
     private int COLOR_NOT_SELECTED = Color.WHITE;
@@ -15,26 +18,39 @@ public class FieldUI {
     private int SIZE = 9;
     private Context context;
 
-    public FieldUI(Field f, Context context, int size) {
+
+
+    private ArrayList<ArrayList<TextField>> boxes = new ArrayList<ArrayList<TextField>>();
+
+    private Field f;
+
+
+    public FieldUI( Context context, int size, int difficulty) {
+        for( int i = 0; i < 9; i++ ){
+            boxes.add(new ArrayList<TextField>());
+        }
         this.context = context;
+        Generator gen = new Generator();
+        f = gen.generateNewField(difficulty);
+
         sudoku = new TextField[SIZE][SIZE];
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                int number = f.getCell(i, j).getValue();
-                final TextField textField = new TextField(context);
-                textField.setMinimumWidth(size);
-                textField.setWidth(size);
-                textField.setMinimumHeight(size);
-                textField.setHeight(size);
-                if (number == 0) {
-                    textField.setTextColor(COLOR_USER);
-                    textField.setText(" ");
-                    //TODO SCHRIFT FETT
-                } else {
-                    textField.setTextColor(COLOR_GENERATOR);
-                    textField.setText(number + "");
-                }
-                textField.setBackgroundColor(COLOR_NOT_SELECTED);
+
+        for(int i = 0; i < 9; i ++) {
+            for(int j = 0; j < 9; j++) {
+                int number = f.getCell(i,j).getValue();
+                final TextField textField = new TextField(context, f.getCell( j, i));
+
+                textField.setMinimumWidth(size - 6);
+                textField.setWidth(size - 6);
+                textField.setMinimumHeight(size - 6);
+                textField.setHeight(size - 6);
+
+
+                //  textField.setBackgroundColor(COLOR_BACKGROUND);
+                // textField.setTextSize(size);
+                sudoku[j][i] = textField;
+                boxes.get((i/3)*3 + j/3).add(textField);
+                //textField.setBackgroundColor(COLOR_NOT_SELECTED);
                 // textField.setTextSize(size);
                 sudoku[i][j] = textField;
 
@@ -51,6 +67,7 @@ public class FieldUI {
                         }
                     }
                 });
+
             }
         }
     }
@@ -64,6 +81,10 @@ public class FieldUI {
     }
 
     public int getCOLOR_GENERATOR() {
-        return COLOR_GENERATOR;
+                return COLOR_GENERATOR;
+            }
+
+    public ArrayList<ArrayList<TextField>> getBoxes() {
+        return boxes;
     }
 }
