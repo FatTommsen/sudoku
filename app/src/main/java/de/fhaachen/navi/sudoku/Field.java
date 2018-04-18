@@ -31,6 +31,7 @@ public class Field {
     public void setValue( int x, int y, int value ){
         board[x][y].setValue( value );
     }
+    public int getValue( int x, int y){ return board[x][y].getValue();}
 
     public Cell findFirstUnsolved(){
         for( Cell[] row: board){
