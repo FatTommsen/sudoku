@@ -1,8 +1,12 @@
 package de.fhaachen.navi.sudoku;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
@@ -28,12 +32,13 @@ public class GameActivity extends AppCompatActivity {
         Field f = gen.generateNewField(difficulty);
 
         GridLayout gl = findViewById(R.id.gridlayout);
-        FieldUI fieldUI = new FieldUI(f, this);
-        for (int i = 0; i < AMOUNT_OF_TEXTFIELDS; i++) {
-            TextField newTextField = new TextField(this);
-            String text = "" + i;
-            newTextField.setText(text);
-        }
+
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x - 16;
+
+        FieldUI fieldUI = new FieldUI(f, this, width / 9);
 
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
