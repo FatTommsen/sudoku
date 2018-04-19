@@ -111,6 +111,14 @@ public class Field {
         return true;
     }
 
+    public void setAllCellsInvisble(){
+        for( Cell[] row: board){
+            for( Cell c : row ){
+                c.setVisible(false);
+            }
+        }
+    }
+
     public String toString(){
         StringBuilder strBuild = new StringBuilder();
         String strMaxBoundary = "=========================================\n";

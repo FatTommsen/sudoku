@@ -32,7 +32,8 @@ public class SolverActivity extends AppCompatActivity {
 
         int difficulty = 81;
         Field field = new Field();
-                fieldUI = new FieldUI(field, this, width / 9, difficulty);
+        field.setAllCellsInvisble();
+        fieldUI = new FieldUI(field, this, width / 9, difficulty);
 
         for (int i = 0; i < 9; i++) {
             GridLayout g = new GridLayout(this);
@@ -40,7 +41,6 @@ public class SolverActivity extends AppCompatActivity {
             g.setColumnCount(3);
             for (int j = 0; j < 9; j++) {
                 g.addView(fieldUI.getBoxes().get(i).get(j));
-
             }
             g.setBackground(this.getResources().getDrawable(R.drawable.box_border));
             g.setPadding(6, 6, 6, 6);
