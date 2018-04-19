@@ -5,13 +5,15 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 
 public class GameActivity extends AppCompatActivity {
     private int difficulty;
-    private FieldUI fieldUI;
+    private static FieldUI fieldUI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +37,9 @@ public class GameActivity extends AppCompatActivity {
         Point size = new Point();
         display.getSize(size);
         int width = size.x - 16;
+        int pixel = (width / 9) - 6;
 
-        fieldUI = new FieldUI(null, this, width / 9, difficulty);
+        fieldUI = new FieldUI(null, this, pixel, difficulty);
 
         for (int i = 0; i < 9; i++) {
             GridLayout g = new GridLayout(this);
@@ -89,5 +92,41 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void checkSudoku(View view){
+        fieldUI.checkField();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.action_menu_game_activity, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.action_newGame:
+                Intent levels = new Intent(getApplicationContext(),LevelActivity.class);
+                startActivity(levels);
+            case R.id.action_deleteUserEntry:
+                deleteUserEntries();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public static void deleteUserEntries() {
+        for(int i = 0; i < fieldUI.getSIZE(); i++){
+            for(int j = 0 ; j < fieldUI.getSIZE(); j++){
+                TextField textField = fieldUI.getTextField(i,j);
+
+                if(!textField.getCell().isVisible()){
+                    textField.setText(" ");
+                }
+            }
+        }
     }
 }

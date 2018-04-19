@@ -41,23 +41,6 @@
         app:layout_constraintTop_toBottomOf="@+id/button_newGame" />
 
     <Button
-        android:id="@+id/button_mySudokus"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="#B3E5FC"
-        android:text="@string/meine_sudokus"
-        android:onClick="mySudokus"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_solver" />
-
-    <Button
         android:id="@+id/button_rules"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -71,7 +54,7 @@
         android:onClick="info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_mySudokus" />
+        app:layout_constraintTop_toBottomOf="@+id/button_solver" />
 
     <TextView
         android:id="@+id/textView_header"
