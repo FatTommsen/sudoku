@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param view
      */
-    public void createNewGame(View view){
+    public void createNewGame(View view) {
         Intent levels = new Intent(getApplicationContext(), LevelActivity.class);
         startActivity(levels);
     }
@@ -28,16 +28,7 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param view
      */
-    public void createSolver(View view){
-
-    }
-
-    /**
-     * Methode für meine Sudokus
-     *
-     * @param view
-     */
-    public void mySudokus(View view){
+    public void createSolver(View view) {
 
     }
 
@@ -46,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param view
      */
-    public void info(View view){
+    public void info(View view) {
         Intent info = new Intent(getApplicationContext(), RulesActivity.class);
         startActivity(info);
     }
