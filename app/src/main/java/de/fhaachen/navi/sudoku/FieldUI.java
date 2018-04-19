@@ -125,6 +125,11 @@ public class FieldUI {
                                     setNotSelected(currentTextField);
                                 }
                                 currentTextField = null;
+                                for(int i = 0; i < 9; i++) {
+                                    for(int j = 0; j < 9; j++) {
+                                        sudoku[i][j].setFromBeginning(true);
+                                    }
+                                }
                                 return;
                             }
                         })
@@ -184,7 +189,7 @@ public class FieldUI {
 
     public void rollback( ArrayList<TextField> cells ){
         for( TextField tmp : cells ){
-            tmp.setBackground(tmp.getResources().getDrawable(R.drawable.cell_border));
+            setNotSelected(tmp);
         }
     }
 
