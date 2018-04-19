@@ -329,7 +329,7 @@ public class FieldUI {
         }else{
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setTitle("")
-                    .setMessage("Kein Tipps mehr übrig")
+                    .setMessage("Keine Tipps mehr übrig")
                     .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             return;
