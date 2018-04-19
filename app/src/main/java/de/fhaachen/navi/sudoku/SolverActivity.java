@@ -9,14 +9,12 @@ import android.widget.Button;
 import android.widget.GridLayout;
 
 public class SolverActivity extends AppCompatActivity {
-//    private int difficulty;
     private FieldUI fieldUI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.solver_view);
-
         createPlayField();
     }
 
@@ -27,14 +25,14 @@ public class SolverActivity extends AppCompatActivity {
 
     private void createGrid() {
         GridLayout gl = findViewById(R.id.gridlayout);
-
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
         int width = size.x - 16;
 
-        int difficulty = 1;
-        fieldUI = new FieldUI(null, this, width / 9, difficulty);
+        int difficulty = 81;
+        Field field = new Field();
+                fieldUI = new FieldUI(field, this, width / 9, difficulty);
 
         for (int i = 0; i < 9; i++) {
             GridLayout g = new GridLayout(this);
@@ -42,11 +40,13 @@ public class SolverActivity extends AppCompatActivity {
             g.setColumnCount(3);
             for (int j = 0; j < 9; j++) {
                 g.addView(fieldUI.getBoxes().get(i).get(j));
+
             }
             g.setBackground(this.getResources().getDrawable(R.drawable.box_border));
             g.setPadding(6, 6, 6, 6);
             gl.addView(g);
         }
+
     }
 
     private void createButtons() {
