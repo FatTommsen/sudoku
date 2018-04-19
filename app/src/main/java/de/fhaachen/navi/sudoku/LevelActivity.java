@@ -6,9 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public class LevelActivity extends AppCompatActivity {
-    private int EASY = 79;
-    private int MEDIUM = 32;
-    private int HARD = 24;
+    private final int EASY = 40;
+    private final int MEDIUM = 32;
+    private final int HARD = 24;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
