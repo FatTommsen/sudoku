@@ -127,7 +127,7 @@ public class GameActivity extends AppCompatActivity {
             for(int j = 0 ; j < fieldUI.getSIZE(); j++){
                 TextField textField = fieldUI.getTextField(i,j);
 
-                if(!textField.getCell().isVisible()){
+                if(!textField.getCell().isFromBeginning()){
                     textField.setText(" ");
                 }
                 fieldUI.setCurrentTextFieldNull();

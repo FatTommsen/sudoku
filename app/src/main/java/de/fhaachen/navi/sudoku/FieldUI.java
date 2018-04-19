@@ -112,6 +112,7 @@ public class FieldUI {
                     .setNegativeButton("zurück", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             f.resetAllValues();
+                            reset();
                             return;
                         }
                     })
@@ -124,6 +125,7 @@ public class FieldUI {
                     .setMessage("Das Sudoku hat mehrere Lösungen.\nEin Tipp kann nicht erzeugt werden.")
                     .setNegativeButton("Okay", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
+                            reset();
                             return;
                         }
                     })
