@@ -167,10 +167,6 @@ public class FieldUI {
         }
     }
 
-
-
-
-
     public void checkField() {
         final ArrayList<TextField> falseValue = new ArrayList<TextField>();
         final ArrayList<TextField> emptyCells = new ArrayList<TextField>();
