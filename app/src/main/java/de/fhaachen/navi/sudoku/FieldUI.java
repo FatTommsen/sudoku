@@ -3,13 +3,8 @@ package de.fhaachen.navi.sudoku;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Color;
-import android.support.annotation.IdRes;
-import android.support.v7.app.AppCompatActivity;
 
 import android.view.View;
-import android.widget.Button;
 
 import java.util.ArrayList;
 
@@ -70,6 +65,7 @@ public class FieldUI {
         setNotSelected(this.currentTextField);
         this.currentTextField = currentTextField;
     }
+
 
     public void setSelected(TextField textField) {
         textField.setBackground(textField.getResources().getDrawable(R.drawable.cell_marked));
@@ -175,6 +171,12 @@ public class FieldUI {
                         .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                // rollback(emptyCells);
+                                setCurrentTextFieldNull();
+                                for(int i = 0; i < 9; i++) {
+                                    for(int j = 0; j < 9; j++) {
+                                        sudoku[i][j].setFromBeginning(true);
+                                    }
+                                }
                                 return;
                             }
                         })
@@ -188,12 +190,20 @@ public class FieldUI {
                             .setNegativeButton("Okay", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     //rollback(emptyCells);
+                                    if(currentTextField != null && !falseValue.contains(currentTextField)) {
+                                        setNotSelected(currentTextField);
+                                    }
+                                    currentTextField = null;
                                     return;
                                 }
                             })
                             .setPositiveButton("alles zurücksetzen.", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    //GameActivity.deleteUserEntries;
+                                    GameActivity.deleteUserEntries();
+                                    setCurrentTextFieldNull();
+                                    for(TextField textField : falseValue) {
+                                        setNotSelected(textField);
+                                    }
                                     return;
                                 }
                             })
@@ -208,6 +218,10 @@ public class FieldUI {
                         .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                               //  rollback(emptyCells);
+                                if(currentTextField != null && !emptyCells.contains(currentTextField)) {
+                                    setNotSelected(currentTextField);
+                                }
+                                currentTextField = null;
                                 return;
                             }
                         })
@@ -219,7 +233,7 @@ public class FieldUI {
 
     public void rollback( ArrayList<TextField> cells ){
         for( TextField tmp : cells ){
-            tmp.setBackground(tmp.getResources().getDrawable(R.drawable.cell_border));
+            setNotSelected(tmp);
         }
     }
 
@@ -234,6 +248,21 @@ public class FieldUI {
         for( TextField[] row : sudoku ){
             for( TextField tmp : row ){
                 tmp.setText( tmp.getCell().getValue() + "");
+            }
+        }
+    }
+
+    public void setCurrentTextFieldNull() {
+        if(currentTextField != null) {
+            setNotSelected(currentTextField);
+        }
+        currentTextField = null;
+    }
+
+    public void selectNothing() {
+        for(int i = 0; i < 9; i++) {
+            for(int j = 0; j < 9; j++) {
+                setNotSelected(sudoku[i][j]);
             }
         }
     }

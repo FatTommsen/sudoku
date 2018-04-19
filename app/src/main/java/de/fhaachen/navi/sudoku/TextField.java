@@ -35,8 +35,11 @@ public class TextField extends android.support.v7.widget.AppCompatButton {
         return cell.isFromBeginning();
     }
 
-
     public Cell getCell() {
         return cell;
+    }
+
+    public void setFromBeginning(boolean bValue){
+        cell.setFromBeginning(bValue);
     }
 }

@@ -126,6 +126,8 @@ public class GameActivity extends AppCompatActivity {
                 if(!textField.getCell().isVisible()){
                     textField.setText(" ");
                 }
+                fieldUI.setCurrentTextFieldNull();
+                fieldUI.selectNothing();
             }
         }
     }
