@@ -4,7 +4,7 @@ public class Solver {
     private Field board;
     private Mode mode;
     private boolean bFound = false;
-    private enum Mode{
+    public enum Mode{
         FindFirstSolution,
         UniqueTest,
         UniqueOneFound,
@@ -16,8 +16,13 @@ public class Solver {
         this.board = board;
     }
 
+    public boolean solve(){
+        mode = Mode.FindFirstSolution;
+        return backtrack();
+    }
 
-    public boolean backtrack(){
+
+    private boolean backtrack(){
         Cell c = board.findFirstUnsolved();
         if( c == null ) {
             if( mode == Mode.UniqueTest ){
@@ -55,5 +60,11 @@ public class Solver {
             return true;
         }
         return false;
+    }
+
+    public Mode analyse(){
+        mode = Mode.UniqueTest;
+        backtrack();
+        return mode;
     }
 }

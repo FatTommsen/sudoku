@@ -24,7 +24,7 @@ public class Generator {
             field.setValue(xRand, yRand, i);
         }
         Solver solver = new Solver(field);
-        solver.backtrack();
+        solver.solve();
 
         int toDelete = 81 - numberAmount;
 

@@ -60,5 +60,4 @@ public class Cell {
     public boolean isFromBeginning(){
         return bFromBeginning;
     }
-
 }

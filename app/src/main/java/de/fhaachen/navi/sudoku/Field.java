@@ -111,6 +111,14 @@ public class Field {
         return true;
     }
 
+    public void setAllCellsInvisble(){
+        for( Cell[] row: board){
+            for( Cell c : row ){
+                c.setVisible(false);
+            }
+        }
+    }
+
     public String toString(){
         StringBuilder strBuild = new StringBuilder();
         String strMaxBoundary = "=========================================\n";
@@ -155,5 +163,12 @@ public class Field {
 
     public Cell getCellFromBox( int box, int number){
         return boxes[ box / 3 ][box % 3 ].getCell(number);
+    }
+    public void resetAllValues(){
+        for( int x = 0; x < 9; x++ ){
+            for( int y = 0; y < 9; y ++ ){
+                board[x][y].setValue(0);
+            }
+        }
     }
 }

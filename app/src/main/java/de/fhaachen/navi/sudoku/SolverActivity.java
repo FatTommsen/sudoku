@@ -1,27 +1,21 @@
 package de.fhaachen.navi.sudoku;
 
-import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 
-public class GameActivity extends AppCompatActivity {
-    private int difficulty;
-    private static FieldUI fieldUI;
+public class SolverActivity extends AppCompatActivity {
+    private FieldUI fieldUI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = getIntent();
-        difficulty = intent.getExtras().getInt("difficulty");
-        System.out.println(difficulty);
-        setContentView(R.layout.game_view);
+        setContentView(R.layout.solver_view);
         createPlayField();
     }
 
@@ -32,14 +26,16 @@ public class GameActivity extends AppCompatActivity {
 
     private void createGrid() {
         GridLayout gl = findViewById(R.id.gridlayout);
-
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
         int width = size.x - 16;
         int pixel = (width / 9) - 6;
 
-        fieldUI = new FieldUI(null, this, pixel, difficulty);
+        int difficulty = 81;
+        Field field = new Field();
+        field.setAllCellsInvisble();
+        fieldUI = new FieldUI(field, this, pixel, difficulty);
 
         for (int i = 0; i < 9; i++) {
             GridLayout g = new GridLayout(this);
@@ -52,9 +48,8 @@ public class GameActivity extends AppCompatActivity {
             g.setPadding(6, 6, 6, 6);
             gl.addView(g);
         }
+
     }
-
-
 
     private void createButtons() {
         Button[] buttons = new Button[9];
@@ -94,41 +89,20 @@ public class GameActivity extends AppCompatActivity {
         });
     }
 
-    public void checkSudoku(View view){
-        fieldUI.checkField();
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.action_menu_game_activity, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
-            case R.id.action_newGame:
-                Intent levels = new Intent(getApplicationContext(),LevelActivity.class);
-                startActivity(levels);
-            case R.id.action_deleteUserEntry:
-                deleteUserEntries();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public static void deleteUserEntries() {
-        for(int i = 0; i < fieldUI.getSIZE(); i++){
-            for(int j = 0 ; j < fieldUI.getSIZE(); j++){
-                TextField textField = fieldUI.getTextField(i,j);
-
-                if(!textField.getCell().isVisible()){
-                    textField.setText(" ");
+    public void solveSudoku(View view){
+        for (int i = 0; i < 9; i++){
+            for (int j = 0; j < 9; j++){
+                TextField tf = fieldUI.getTextField(i, j);
+                if (!tf.getText().toString().equals(" ")){
+                    tf.setTextColor(Color.BLACK);
                 }
-                fieldUI.setCurrentTextFieldNull();
-                fieldUI.selectNothing();
+
             }
         }
+        fieldUI.solveTheSudoku();
+
     }
+
+
 }

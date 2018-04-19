@@ -114,12 +114,12 @@
             android:weightSum="2">
 
             <Button
-                android:id="@+id/buttonPruefen"
+                android:id="@+id/buttonLoesen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="checkSudoku"
-                android:text="Prüfen" />
+                android:onClick="solveSudoku"
+                android:text="Lösen" />
 
             <Button
                 android:id="@+id/buttonTipp"
