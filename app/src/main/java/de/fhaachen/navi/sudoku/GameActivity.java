@@ -13,7 +13,7 @@ import android.widget.GridLayout;
 
 public class GameActivity extends AppCompatActivity {
     private int difficulty;
-    private FieldUI fieldUI;
+    private static FieldUI fieldUI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +104,7 @@ public class GameActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void deleteUserEntries() {
+    public static void deleteUserEntries() {
         for(int i = 0; i < fieldUI.getSIZE(); i++){
             for(int j = 0 ; j < fieldUI.getSIZE(); j++){
                 TextField textField = fieldUI.getTextField(i,j);

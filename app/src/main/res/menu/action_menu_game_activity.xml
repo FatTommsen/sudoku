@@ -12,7 +12,7 @@
     <item
         android:id="@+id/action_deleteUserEntry"
         android:orderInCategory="100"
-        android:title="@string/zuruecksetzten"
+        android:title="@string/zuruecksetzen"
         app:showAsAction="never" />
     </group>
 </menu>

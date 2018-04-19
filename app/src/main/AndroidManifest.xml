@@ -27,7 +27,7 @@
 
         <activity
             android:name=".GameActivity"
-            android:parentActivityName=".LevelActivity">
+            android:parentActivityName=".MainActivity">
 	</activity>
 	
         <activity
