@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 public class FieldUI {
     private int COLOR_GENERATOR = Color.BLACK;
-    private int COLOR_SELECTED = Color.GRAY;
 
     private TextField[][] sudoku;
     private TextField currentTextField;
@@ -33,7 +32,7 @@ public class FieldUI {
                 final TextField textField = new TextField(context, f.getCell(j, i));
 
                 textField.setMinimumWidth(size - 6);
-                textField.setWidth(size - 6);
+                textField.setWidth(size -6);
                 textField.setMinimumHeight(size - 6);
                 textField.setHeight(size - 6);
 
@@ -49,8 +48,8 @@ public class FieldUI {
                         if (oldTextField != null) {
                             oldTextField.setBackground(oldTextField.getResources().getDrawable(R.drawable.cell_border));
                         }
-                        if (currentTextField.getCurrentTextColor() != COLOR_GENERATOR) {
-                            currentTextField.setBackgroundColor(COLOR_SELECTED);
+                        if (!currentTextField.getCell().isFromBeginning()) {
+                            currentTextField.setBackground(currentTextField.getResources().getDrawable(R.drawable.cell_marked));
                         }
                     }
                 });

@@ -44,10 +44,11 @@ public class GameActivity extends AppCompatActivity {
             GridLayout g = new GridLayout(this);
             g.setRowCount(3);
             g.setColumnCount(3);
-            g.setBackground(this.getResources().getDrawable(R.drawable.box_border));
             for (int j = 0; j < 9; j++) {
                 g.addView(fieldUI.getBoxes().get(i).get(j));
             }
+            g.setBackground(this.getResources().getDrawable(R.drawable.box_border));
+            g.setPadding(6,6,6,6);
             gl.addView(g);
         }
     }
