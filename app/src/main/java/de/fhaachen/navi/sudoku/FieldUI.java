@@ -78,4 +78,6 @@ public class FieldUI {
     public ArrayList<ArrayList<TextField>> getBoxes() {
         return boxes;
     }
+
+    public int getSIZE(){return SIZE;}
 }
