@@ -24,6 +24,7 @@ public class FieldUI {
             Generator gen = new Generator();
             f = gen.generateNewField(difficulty);
         }
+        this.f = f;
 
         sudoku = new TextField[SIZE][SIZE];
 
@@ -80,5 +81,21 @@ public class FieldUI {
 
     public ArrayList<ArrayList<TextField>> getBoxes() {
         return boxes;
+    }
+
+    public void solveTheSudoku(){
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if(!sudoku[i][j].getText().toString().equals(" ")){
+                    int value = Integer.parseInt(sudoku[i][j].getText().toString());
+                    sudoku[i][j].getCell().setValue(value);
+                }
+            }
+        }
+        Solver solver = new Solver(f);
+        if(!solver.isUnique()){
+            //Meldung an User nicht nur eine Lösung vorhanden
+        }
+        solver.backtrack();
     }
 }

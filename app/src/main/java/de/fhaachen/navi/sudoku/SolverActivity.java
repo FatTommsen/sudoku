@@ -86,4 +86,8 @@ public class SolverActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void solveSudoku(View view){
+        FieldUI.solveTheSudoku();
+    }
 }

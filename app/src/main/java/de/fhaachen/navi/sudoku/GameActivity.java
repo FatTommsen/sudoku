@@ -20,7 +20,6 @@ public class GameActivity extends AppCompatActivity {
         difficulty = intent.getExtras().getInt("difficulty");
         System.out.println(difficulty);
         setContentView(R.layout.game_view);
-
         createPlayField();
     }
 
