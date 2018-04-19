@@ -121,10 +121,7 @@ public class FieldUI {
                         .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                // rollback(emptyCells);
-                                if(currentTextField != null) {
-                                    setNotSelected(currentTextField);
-                                }
-                                currentTextField = null;
+                                setCurrentTextFieldNull();
                                 for(int i = 0; i < 9; i++) {
                                     for(int j = 0; j < 9; j++) {
                                         sudoku[i][j].setFromBeginning(true);
@@ -153,10 +150,7 @@ public class FieldUI {
                             .setPositiveButton("alles zurücksetzen.", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     GameActivity.deleteUserEntries();
-                                    if(currentTextField != null) {
-                                        setNotSelected(currentTextField);
-                                    }
-                                    currentTextField = null;
+                                    setCurrentTextFieldNull();
                                     for(TextField textField : falseValue) {
                                         setNotSelected(textField);
                                     }
@@ -197,5 +191,12 @@ public class FieldUI {
 
     public TextField getTextField( int x, int y) {
         return sudoku[x][y];
+    }
+
+    public void setCurrentTextFieldNull() {
+        if(currentTextField != null) {
+            setNotSelected(currentTextField);
+        }
+        currentTextField = null;
     }
 }
