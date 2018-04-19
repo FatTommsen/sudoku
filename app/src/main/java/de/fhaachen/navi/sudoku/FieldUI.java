@@ -7,14 +7,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
+
 import android.view.View;
 import android.widget.Button;
 
 import java.util.ArrayList;
 
 public class FieldUI {
-    private int COLOR_GENERATOR = Color.BLACK;
-
     private TextField[][] sudoku;
     private TextField currentTextField;
     private int SIZE = 9;
@@ -23,27 +22,24 @@ public class FieldUI {
     private Field f;
 
 
-    public FieldUI(Context context, int size, int difficulty) {
+    public FieldUI(Field f, Context context, int size, int difficulty) {
         for (int i = 0; i < 9; i++) {
             boxes.add(new ArrayList<TextField>());
         }
         this.context = context;
 
-        Generator gen = new Generator();
-        f = gen.generateNewField(difficulty);
+        if (f == null) {
+            Generator gen = new Generator();
+            f = gen.generateNewField(difficulty);
+        }
 
         sudoku = new TextField[SIZE][SIZE];
 
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 final TextField textField = new TextField(context, f.getCell(j, i));
+                textField.setSize(size);
 
-                textField.setMinimumWidth(size - 6);
-                textField.setWidth(size - 6);
-                textField.setMinimumHeight(size - 6);
-                textField.setHeight(size - 6);
-
-                // textField.setTextSize(size);
                 boxes.get((i / 3) * 3 + j / 3).add(textField);
                 sudoku[i][j] = textField;
 
@@ -55,7 +51,7 @@ public class FieldUI {
                         if (oldTextField != null) {
                             setNotSelected(oldTextField);
                         }
-                        if (!currentTextField.getCell().isFromBeginning()) {
+                        if (!isFromBeginning(currentTextField)) {
                             setSelected(currentTextField);
                         }
                     }
@@ -82,8 +78,8 @@ public class FieldUI {
         textField.setBackground(textField.getResources().getDrawable(R.drawable.cell_border));
     }
 
-    public int getCOLOR_GENERATOR() {
-        return COLOR_GENERATOR;
+    public boolean isFromBeginning(TextField textField) {
+        return textField.isFromBeginning();
     }
 
     public ArrayList<ArrayList<TextField>> getBoxes() {
