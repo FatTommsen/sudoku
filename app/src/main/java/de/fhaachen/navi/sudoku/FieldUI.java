@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 
 import android.graphics.Color;
 import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
@@ -16,7 +17,8 @@ public class FieldUI {
     private Context context;
     private ArrayList<ArrayList<TextField>> boxes = new ArrayList<>();
     private final Field f;
-    private int hintcounter = 0;
+    private int hintcounter = 5;
+    private Button hintCounter;
 
 
     public FieldUI(Field f, Context context, int size, int difficulty) {
@@ -318,13 +320,14 @@ public class FieldUI {
     }
 
     public void giveAHint() {
-        if (hintcounter < 5) {
+        if (hintcounter != 0) {
             if (currentTextField != null) {
                 currentTextField.setText("" + currentTextField.getCell().getValue());
                 currentTextField.setTextColor(TextField.getColorHint());
                 currentTextField.setFromBeginning(true);
                 setCurrentTextFieldNull();
-                hintcounter++;
+                hintcounter--;
+                hintCounter.setText("Tipp (" + hintcounter + ")");
             }
         }else{
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -337,5 +340,9 @@ public class FieldUI {
                     })
                     .show();
         }
+    }
+
+    public void registerHintCounter( Button button ){
+        this.hintCounter = button;
     }
 }

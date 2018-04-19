@@ -115,7 +115,7 @@
 
             <Button
                 android:id="@+id/buttonPruefen"
-                android:layout_width="match_parent"
+                android:layout_width="191dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="checkSudoku"
@@ -123,11 +123,11 @@
 
             <Button
                 android:id="@+id/buttonTipp"
-                android:layout_width="match_parent"
+                android:layout_width="183dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="giveAHint"
-                android:text="Tipp" />
+                android:text="Tipp (5)" />
         </TableRow>
 
     </LinearLayout>

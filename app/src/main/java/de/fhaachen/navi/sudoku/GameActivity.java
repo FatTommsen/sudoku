@@ -40,6 +40,8 @@ public class GameActivity extends AppCompatActivity {
         int pixel = (width / 9) - 6;
 
         fieldUI = new FieldUI(null, this, pixel, difficulty);
+        Button button = findViewById(R.id.buttonTipp);
+        fieldUI.registerHintCounter( button );
 
         for (int i = 0; i < 9; i++) {
             GridLayout g = new GridLayout(this);
