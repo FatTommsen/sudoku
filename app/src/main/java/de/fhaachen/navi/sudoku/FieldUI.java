@@ -16,6 +16,7 @@ public class FieldUI {
     private Context context;
     private ArrayList<ArrayList<TextField>> boxes = new ArrayList<>();
     private final Field f;
+    private int hintcounter = 0;
 
 
     public FieldUI(Field f, Context context, int size, int difficulty) {
@@ -317,11 +318,24 @@ public class FieldUI {
     }
 
     public void giveAHint() {
-        if(currentTextField != null) {
-            currentTextField.setText("" + currentTextField.getCell().getValue());
-            currentTextField.setTextColor(TextField.getColorHint());
-            currentTextField.setFromBeginning(true);
-            setCurrentTextFieldNull();
+        if (hintcounter < 5) {
+            if (currentTextField != null) {
+                currentTextField.setText("" + currentTextField.getCell().getValue());
+                currentTextField.setTextColor(TextField.getColorHint());
+                currentTextField.setFromBeginning(true);
+                setCurrentTextFieldNull();
+                hintcounter++;
+            }
+        }else{
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setTitle("")
+                    .setMessage("Kein Tipps mehr übrig")
+                    .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            return;
+                        }
+                    })
+                    .show();
         }
     }
 }
