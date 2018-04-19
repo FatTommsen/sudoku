@@ -29,6 +29,11 @@
             android:name=".GameActivity"
             android:parentActivityName=".LevelActivity">
 	</activity>
+
+        <activity
+            android:name=".SolverActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
 	
         <activity
             android:name=".RulesActivity"

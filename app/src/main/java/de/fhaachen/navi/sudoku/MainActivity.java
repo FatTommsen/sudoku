@@ -29,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void createSolver(View view){
-
+        Intent solver = new Intent(getApplicationContext(), SolverActivity.class);
+        startActivity(solver);
     }
 
     /**
