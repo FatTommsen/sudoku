@@ -35,7 +35,7 @@ public class FieldUI {
                 final TextField textField = new TextField(context, f.getCell(j, i));
 
                 textField.setMinimumWidth(size - 6);
-                textField.setWidth(size - 6);
+                textField.setWidth(size -6);
                 textField.setMinimumHeight(size - 6);
                 textField.setHeight(size - 6);
 
@@ -54,7 +54,7 @@ public class FieldUI {
                             // oldTextField.setBackgroundColor(COLOR_NOT_SELECTED);
                         }
                         if (currentTextField.getCurrentTextColor() != COLOR_GENERATOR) {
-                            currentTextField.setBackgroundColor(COLOR_SELECTED);
+                            currentTextField.setBackground(currentTextField.getResources().getDrawable(R.drawable.cell_marked));
                         }
                     }
                 });
