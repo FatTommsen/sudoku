@@ -1,8 +1,14 @@
 package de.fhaachen.navi.sudoku;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
+import android.support.annotation.IdRes;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
@@ -82,5 +88,92 @@ public class FieldUI {
 
     public ArrayList<ArrayList<TextField>> getBoxes() {
         return boxes;
+    }
+
+    public void checkField() {
+        final ArrayList<TextField> falseValue = new ArrayList<TextField>();
+        final ArrayList<TextField> emptyCells = new ArrayList<TextField>();
+
+        boolean bValid = true;
+        boolean bComplete = true;
+        //analyze
+        for (int x = 0; x < 9; x++) {
+            for (int y = 0; y < 9; y++) {
+                TextField tmp = sudoku[x][y];
+                if (sudoku[x][y].getText().toString().equals(" ")) {
+                    bComplete = false;
+                    emptyCells.add(tmp);
+                } else if (bComplete) {
+                    if (tmp.getCell().isFromBeginning()) {
+                        continue;
+                    } else {
+                        Integer value = Integer.parseInt(tmp.getText().toString());
+                        if (value != tmp.getCell().getValue()) {
+                            falseValue.add(tmp);
+                            bValid = false;
+                        }
+                    }
+                }
+            }
+        }
+        //feedback
+        //test:
+        //bComplete = true;
+       // bValid = false;
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        if (bComplete) {
+
+            if (bValid) {
+                builder.setTitle("")
+                        .setMessage("Richtig.")
+                        .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                               // rollback(emptyCells);
+                                return;
+                            }
+                        })
+                        .show();
+            } else {
+                for (TextField tmp : falseValue) {
+                    tmp.setBackground(tmp.getResources().getDrawable(R.drawable.cell_wrong_value));
+                }
+                    builder.setTitle("")
+                            .setMessage("Die markierten Felder sind leider\nfalsch gelöst.")
+                            .setNegativeButton("Okay", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //rollback(emptyCells);
+                                    return;
+                                }
+                            })
+                            .setPositiveButton("alles zurücksetzen.", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //GameActivity.deleteUserEntries;
+                                    return;
+                                }
+                            })
+                            .show();
+            }
+        } else {
+            for (TextField tmp : emptyCells) {
+                tmp.setBackground(tmp.getResources().getDrawable(R.drawable.cell_incomplete));
+            }
+                builder.setTitle("")
+                        .setMessage("Es müssen alle 81 Felder ausgeüllt sein.")
+                        .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                              //  rollback(emptyCells);
+                                return;
+                            }
+                        })
+                        .show();
+        }
+    }
+
+
+
+    public void rollback( ArrayList<TextField> cells ){
+        for( TextField tmp : cells ){
+            tmp.setBackground(tmp.getResources().getDrawable(R.drawable.cell_border));
+        }
     }
 }

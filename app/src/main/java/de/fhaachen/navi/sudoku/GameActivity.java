@@ -89,4 +89,10 @@ public class GameActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void checkSudoku(View view){
+        fieldUI.checkField();
+    }
+
+    public static void test(){}
 }
