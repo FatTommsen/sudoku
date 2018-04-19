@@ -88,7 +88,7 @@ public class FieldUI {
             for (int j = 0; j < 9; j++) {
                 if(!sudoku[i][j].getText().toString().equals(" ")){
                     int value = Integer.parseInt(sudoku[i][j].getText().toString());
-                    sudoku[i][j].getCell().setValue(value);
+                    sudoku[i][j].getCell().setValue(value);  //getCell muss noch geschrieben werden
                 }
             }
         }

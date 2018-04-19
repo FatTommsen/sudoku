@@ -87,7 +87,28 @@ public class SolverActivity extends AppCompatActivity {
         });
     }
 
+
     public void solveSudoku(View view){
-        FieldUI.solveTheSudoku();
+
+        fieldUI.solveTheSudoku();
+
+        GridLayout gl = findViewById(R.id.gridlayout);
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x - 16;
+
+        for (int i = 0; i < 9; i++) {
+            GridLayout g = new GridLayout(this);
+            g.setRowCount(3);
+            g.setColumnCount(3);
+            for (int j = 0; j < 9; j++) {
+                g.addView(fieldUI.getBoxes().get(i).get(j));
+            }
+            g.setBackground(this.getResources().getDrawable(R.drawable.box_border));
+            g.setPadding(6, 6, 6, 6);
+            gl.addView(g);
+        }
+
     }
 }
