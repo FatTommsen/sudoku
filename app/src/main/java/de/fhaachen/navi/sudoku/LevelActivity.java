@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public class LevelActivity extends AppCompatActivity {
+
     private final int EASY = 40;
     private final int MEDIUM = 32;
     private final int HARD = 24;

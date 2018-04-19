@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
+import android.graphics.Color;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -141,6 +142,7 @@ public class FieldUI {
                 }
                 else {
                     currentTextField.setText( currentTextField.getCell().getValue() + "" );
+                    currentTextField.setTextColor(TextField.getColorHint());
                 }
             }
             else {
@@ -302,15 +304,24 @@ public class FieldUI {
         }
     }
 
-    public void reset(){
-        for( TextField[] row : sudoku ){
-            for( TextField tmp : row ){
-                if( !tmp.getCell().isFromBeginning() ){
+
+    public void reset() {
+        for (TextField[] row : sudoku) {
+            for (TextField tmp : row) {
+                if (!tmp.getCell().isFromBeginning()) {
                     tmp.setText(" ");
                 }
-                tmp.setFromBeginning( false );
+                tmp.setFromBeginning(false);
             }
         }
+    }
 
+    public void giveAHint() {
+        if(currentTextField != null) {
+            currentTextField.setText("" + currentTextField.getCell().getValue());
+            currentTextField.setTextColor(TextField.getColorHint());
+            currentTextField.setFromBeginning(true);
+            setCurrentTextFieldNull();
+        }
     }
 }
