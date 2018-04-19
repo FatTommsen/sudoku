@@ -6,7 +6,6 @@ import android.graphics.Color;
 public class TextField extends android.support.v7.widget.AppCompatButton {
     private static int COLOR_USER = Color.BLUE;
     private static int COLOR_GENERATOR = Color.BLACK;
-    private static int COLOR_BACKGROUND = Color.WHITE;
 
     private Cell c;
 

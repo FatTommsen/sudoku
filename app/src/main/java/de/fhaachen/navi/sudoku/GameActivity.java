@@ -21,8 +21,38 @@ public class GameActivity extends AppCompatActivity {
         System.out.println(difficulty);
         setContentView(R.layout.game_view);
 
-        createGrid();
+        createPlayField();
+    }
 
+    private void createPlayField() {
+        createGrid();
+        createButtons();
+
+    }
+
+    private void createGrid() {
+        GridLayout gl = findViewById(R.id.gridlayout);
+
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x - 16;
+
+        fieldUI = new FieldUI(this, width / 9, difficulty);
+
+        for (int i = 0; i < 9; i++) {
+            GridLayout g = new GridLayout(this);
+            g.setRowCount(3);
+            g.setColumnCount(3);
+            g.setBackground(this.getResources().getDrawable(R.drawable.box_border));
+            for (int j = 0; j < 9; j++) {
+                g.addView(fieldUI.getBoxes().get(i).get(j));
+            }
+            gl.addView(g);
+        }
+    }
+
+    private void createButtons() {
         Button[] buttons = new Button[9];
         buttons[0] = findViewById(R.id.button1);
         buttons[1] = findViewById(R.id.button2);
@@ -39,8 +69,9 @@ public class GameActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     TextField textField = fieldUI.getCurrentTextField();
-                    if (textField.getCurrentTextColor() != fieldUI.getCOLOR_GENERATOR()) {
+                    if (textField != null && textField.getCurrentTextColor() != fieldUI.getCOLOR_GENERATOR()) {
                         textField.setText("" + n);
+                        fieldUI.setCurrentTextField(null);
                     }
                 }
             });
@@ -51,34 +82,11 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 TextField textField = fieldUI.getCurrentTextField();
-                if (textField.getCurrentTextColor() != fieldUI.getCOLOR_GENERATOR()) {
+                if (textField != null && textField.getCurrentTextColor() != fieldUI.getCOLOR_GENERATOR()) {
                     textField.setText(" ");
+                    fieldUI.setCurrentTextField(null);
                 }
             }
         });
-    }
-
-    private void createGrid() {
-
-        GridLayout gl = findViewById(R.id.gridlayout);
-
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        int width = size.x - 16;
-
-
-        fieldUI = new FieldUI(this, width / 9, difficulty);
-
-        for (int i = 0; i < 9; i++) {
-            GridLayout g = new GridLayout(this);
-            g.setRowCount(3);
-            g.setColumnCount(3);
-            g.setBackground(this.getResources().getDrawable(R.drawable.box_border));
-            for (int j = 0; j < 9; j++) {
-                g.addView(fieldUI.getBoxes().get(i).get(j));
-            }
-            gl.addView(g);
-        }
     }
 }

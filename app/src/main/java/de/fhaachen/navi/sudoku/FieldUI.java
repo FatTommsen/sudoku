@@ -7,16 +7,14 @@ import android.view.View;
 import java.util.ArrayList;
 
 public class FieldUI {
-    private int COLOR_USER = Color.BLUE;
     private int COLOR_GENERATOR = Color.BLACK;
-    private int COLOR_NOT_SELECTED = Color.WHITE;
     private int COLOR_SELECTED = Color.GRAY;
 
     private TextField[][] sudoku;
     private TextField currentTextField;
     private int SIZE = 9;
     private Context context;
-    private ArrayList<ArrayList<TextField>> boxes = new ArrayList<ArrayList<TextField>>();
+    private ArrayList<ArrayList<TextField>> boxes = new ArrayList<>();
     private Field f;
 
 
@@ -50,8 +48,6 @@ public class FieldUI {
                         currentTextField = textField;
                         if (oldTextField != null) {
                             oldTextField.setBackground(oldTextField.getResources().getDrawable(R.drawable.cell_border));
-
-                            // oldTextField.setBackgroundColor(COLOR_NOT_SELECTED);
                         }
                         if (currentTextField.getCurrentTextColor() != COLOR_GENERATOR) {
                             currentTextField.setBackgroundColor(COLOR_SELECTED);
@@ -63,12 +59,13 @@ public class FieldUI {
         }
     }
 
-    public TextField getTextField(int x, int y) {
-        return sudoku[x][y];
-    }
-
     public TextField getCurrentTextField() {
         return currentTextField;
+    }
+
+    public void setCurrentTextField(TextField currentTextField) {
+        this.currentTextField.setBackground(this.currentTextField.getResources().getDrawable(R.drawable.cell_border));
+        this.currentTextField = currentTextField;
     }
 
     public int getCOLOR_GENERATOR() {
