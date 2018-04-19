@@ -172,4 +172,10 @@ public class FieldUI {
             tmp.setBackground(tmp.getResources().getDrawable(R.drawable.cell_border));
         }
     }
+
+    public int getSIZE(){return SIZE;}
+
+    public TextField getTextField( int x, int y) {
+        return sudoku[x][y];
+    }
 }

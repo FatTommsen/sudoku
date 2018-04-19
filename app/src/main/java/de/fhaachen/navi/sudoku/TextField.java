@@ -16,7 +16,7 @@ public class TextField extends android.support.v7.widget.AppCompatButton {
         setBackground(this.getResources().getDrawable(R.drawable.cell_border));
         if (c.isVisible()) {
             setTextColor(COLOR_GENERATOR);
-            setText(c.getValue() + "");
+            setText(cell.getValue() + "");
         } else {
             setTextColor(COLOR_USER);
             setText(" ");
