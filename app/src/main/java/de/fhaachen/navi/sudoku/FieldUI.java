@@ -92,6 +92,10 @@ public class FieldUI {
                 if (!sudoku[i][j].getText().toString().equals(" ")) {
                     int value = Integer.parseInt(sudoku[i][j].getText().toString());
                     sudoku[i][j].getCell().setValue(value);
+                    sudoku[i][j].getCell().setFromBeginning( true );
+                }
+                else{
+                    sudoku[i][j].getCell().setFromBeginning( false );
                 }
             }
         }
@@ -118,6 +122,12 @@ public class FieldUI {
                         .setMessage("Das Sudoku hat mehrere Lösungen.\nDies ist eine davon.")
                         .setNegativeButton("Okay", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
+                                return;
+                            }
+                        })
+                        .setPositiveButton("zurücksetzen", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                reset();
                                 return;
                             }
                         })
@@ -263,6 +273,17 @@ public class FieldUI {
         for(int i = 0; i < 9; i++) {
             for(int j = 0; j < 9; j++) {
                 setNotSelected(sudoku[i][j]);
+            }
+        }
+    }
+
+    public void reset(){
+        for( TextField[] row : sudoku ){
+            for( TextField tmp : row ){
+                if( !tmp.getCell().isFromBeginning() ){
+                    tmp.setText(" ");
+                }
+                tmp.setFromBeginning( false );
             }
         }
     }
