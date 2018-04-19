@@ -1,5 +1,6 @@
 package de.fhaachen.navi.sudoku;
 
+import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -29,11 +30,12 @@ public class SolverActivity extends AppCompatActivity {
         Point size = new Point();
         display.getSize(size);
         int width = size.x - 16;
+        int pixel = (width / 9) - 6;
 
         int difficulty = 81;
         Field field = new Field();
         field.setAllCellsInvisble();
-        fieldUI = new FieldUI(field, this, width / 9, difficulty);
+        fieldUI = new FieldUI(field, this, pixel, difficulty);
 
         for (int i = 0; i < 9; i++) {
             GridLayout g = new GridLayout(this);
@@ -89,6 +91,15 @@ public class SolverActivity extends AppCompatActivity {
 
 
     public void solveSudoku(View view){
+        for (int i = 0; i < 9; i++){
+            for (int j = 0; j < 9; j++){
+                TextField tf = fieldUI.getTextField(i, j);
+                if (!tf.getText().toString().equals(" ")){
+                    tf.setTextColor(Color.BLACK);
+                }
+
+            }
+        }
         fieldUI.solveTheSudoku();
 
     }
