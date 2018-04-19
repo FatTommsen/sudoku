@@ -3,13 +3,8 @@ package de.fhaachen.navi.sudoku;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Color;
-import android.support.annotation.IdRes;
-import android.support.v7.app.AppCompatActivity;
 
 import android.view.View;
-import android.widget.Button;
 
 import java.util.ArrayList;
 
@@ -70,6 +65,7 @@ public class FieldUI {
         this.currentTextField = currentTextField;
     }
 
+
     public void setSelected(TextField textField) {
         textField.setBackground(textField.getResources().getDrawable(R.drawable.cell_marked));
     }
@@ -125,6 +121,10 @@ public class FieldUI {
                         .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                // rollback(emptyCells);
+                                if(currentTextField != null) {
+                                    setNotSelected(currentTextField);
+                                }
+                                currentTextField = null;
                                 return;
                             }
                         })
@@ -138,12 +138,23 @@ public class FieldUI {
                             .setNegativeButton("Okay", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     //rollback(emptyCells);
+                                    if(currentTextField != null && !falseValue.contains(currentTextField)) {
+                                        setNotSelected(currentTextField);
+                                    }
+                                    currentTextField = null;
                                     return;
                                 }
                             })
                             .setPositiveButton("alles zurücksetzen.", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    //GameActivity.deleteUserEntries;
+                                    GameActivity.deleteUserEntries();
+                                    if(currentTextField != null) {
+                                        setNotSelected(currentTextField);
+                                    }
+                                    currentTextField = null;
+                                    for(TextField textField : falseValue) {
+                                        setNotSelected(textField);
+                                    }
                                     return;
                                 }
                             })
@@ -158,6 +169,10 @@ public class FieldUI {
                         .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                               //  rollback(emptyCells);
+                                if(currentTextField != null && !emptyCells.contains(currentTextField)) {
+                                    setNotSelected(currentTextField);
+                                }
+                                currentTextField = null;
                                 return;
                             }
                         })
