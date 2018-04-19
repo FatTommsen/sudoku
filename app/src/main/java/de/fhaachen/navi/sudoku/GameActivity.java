@@ -47,7 +47,7 @@ public class GameActivity extends AppCompatActivity {
                 g.addView(fieldUI.getBoxes().get(i).get(j));
             }
             g.setBackground(this.getResources().getDrawable(R.drawable.box_border));
-            g.setPadding(6,6,6,6);
+            g.setPadding(6, 6, 6, 6);
             gl.addView(g);
         }
     }
@@ -69,7 +69,7 @@ public class GameActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     TextField textField = fieldUI.getCurrentTextField();
-                    if (textField != null && textField.getCurrentTextColor() != fieldUI.getCOLOR_GENERATOR()) {
+                    if (textField != null && !fieldUI.isFromBeginning(textField)) {
                         textField.setText("" + n);
                         fieldUI.setCurrentTextField(null);
                     }
@@ -82,7 +82,7 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 TextField textField = fieldUI.getCurrentTextField();
-                if (textField != null && textField.getCurrentTextColor() != fieldUI.getCOLOR_GENERATOR()) {
+                if (textField != null && !fieldUI.isFromBeginning(textField)) {
                     textField.setText(" ");
                     fieldUI.setCurrentTextField(null);
                 }

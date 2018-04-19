@@ -1,14 +1,11 @@
 package de.fhaachen.navi.sudoku;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.View;
 
 import java.util.ArrayList;
 
 public class FieldUI {
-    private int COLOR_GENERATOR = Color.BLACK;
-
     private TextField[][] sudoku;
     private TextField currentTextField;
     private int SIZE = 9;
@@ -37,7 +34,6 @@ public class FieldUI {
                 textField.setMinimumHeight(size - 6);
                 textField.setHeight(size - 6);
 
-                // textField.setTextSize(size);
                 boxes.get((i / 3) * 3 + j / 3).add(textField);
                 sudoku[i][j] = textField;
 
@@ -49,7 +45,7 @@ public class FieldUI {
                         if (oldTextField != null) {
                             setNotSelected(oldTextField);
                         }
-                        if (!currentTextField.getCell().isFromBeginning()) {
+                        if (!isFromBeginning(currentTextField)) {
                             setSelected(currentTextField);
                         }
                     }
@@ -76,8 +72,8 @@ public class FieldUI {
         textField.setBackground(textField.getResources().getDrawable(R.drawable.cell_border));
     }
 
-    public int getCOLOR_GENERATOR() {
-        return COLOR_GENERATOR;
+    public boolean isFromBeginning(TextField textField) {
+        return textField.isFromBeginning();
     }
 
     public ArrayList<ArrayList<TextField>> getBoxes() {

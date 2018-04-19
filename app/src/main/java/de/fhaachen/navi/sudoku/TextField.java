@@ -22,7 +22,7 @@ public class TextField extends android.support.v7.widget.AppCompatButton {
         }
     }
 
-    public Cell getCell() {
-        return cell;
+    public boolean isFromBeginning() {
+        return cell.isFromBeginning();
     }
 }
