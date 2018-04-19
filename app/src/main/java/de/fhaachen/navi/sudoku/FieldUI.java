@@ -14,14 +14,16 @@ public class FieldUI {
     private Field f;
 
 
-    public FieldUI(Context context, int size, int difficulty) {
+    public FieldUI(Field f, Context context, int size, int difficulty) {
         for (int i = 0; i < 9; i++) {
             boxes.add(new ArrayList<TextField>());
         }
         this.context = context;
 
-        Generator gen = new Generator();
-        f = gen.generateNewField(difficulty);
+        if (f == null) {
+            Generator gen = new Generator();
+            f = gen.generateNewField(difficulty);
+        }
 
         sudoku = new TextField[SIZE][SIZE];
 

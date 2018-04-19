@@ -37,7 +37,7 @@ public class GameActivity extends AppCompatActivity {
         display.getSize(size);
         int width = size.x - 16;
 
-        fieldUI = new FieldUI(this, width / 9, difficulty);
+        fieldUI = new FieldUI(null, this, width / 9, difficulty);
 
         for (int i = 0; i < 9; i++) {
             GridLayout g = new GridLayout(this);
