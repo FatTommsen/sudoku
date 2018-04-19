@@ -54,7 +54,9 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-
+    public void giveAHint(View view){
+        fieldUI.giveAHint();
+    }
 
     private void createButtons() {
         Button[] buttons = new Button[9];

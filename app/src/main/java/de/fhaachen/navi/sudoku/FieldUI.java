@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
+import android.graphics.Color;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -264,6 +265,15 @@ public class FieldUI {
             for(int j = 0; j < 9; j++) {
                 setNotSelected(sudoku[i][j]);
             }
+        }
+    }
+
+    public void giveAHint() {
+        if(currentTextField != null) {
+            currentTextField.setText("" + currentTextField.getCell().getValue());
+            currentTextField.setTextColor(TextField.getColorHint());
+            currentTextField.setFromBeginning(true);
+            setCurrentTextFieldNull();
         }
     }
 }

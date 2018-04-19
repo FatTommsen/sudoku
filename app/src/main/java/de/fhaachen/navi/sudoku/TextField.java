@@ -7,6 +7,7 @@ import android.util.TypedValue;
 public class TextField extends android.support.v7.widget.AppCompatButton {
     private static int COLOR_USER = Color.BLUE;
     private static int COLOR_GENERATOR = Color.BLACK;
+    private static int COLOR_HINT = Color.RED;
 
     private Cell cell;
 
@@ -41,5 +42,9 @@ public class TextField extends android.support.v7.widget.AppCompatButton {
 
     public void setFromBeginning(boolean bValue){
         cell.setFromBeginning(bValue);
+    }
+
+    public static int getColorHint() {
+        return COLOR_HINT;
     }
 }
