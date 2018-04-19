@@ -27,7 +27,6 @@ public class GameActivity extends AppCompatActivity {
     private void createPlayField() {
         createGrid();
         createButtons();
-
     }
 
     private void createGrid() {

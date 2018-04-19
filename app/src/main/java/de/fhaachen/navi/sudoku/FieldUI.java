@@ -22,6 +22,7 @@ public class FieldUI {
             boxes.add(new ArrayList<TextField>());
         }
         this.context = context;
+
         Generator gen = new Generator();
         f = gen.generateNewField(difficulty);
 
@@ -32,7 +33,7 @@ public class FieldUI {
                 final TextField textField = new TextField(context, f.getCell(j, i));
 
                 textField.setMinimumWidth(size - 6);
-                textField.setWidth(size -6);
+                textField.setWidth(size - 6);
                 textField.setMinimumHeight(size - 6);
                 textField.setHeight(size - 6);
 
@@ -46,10 +47,10 @@ public class FieldUI {
                         TextField oldTextField = currentTextField;
                         currentTextField = textField;
                         if (oldTextField != null) {
-                            oldTextField.setBackground(oldTextField.getResources().getDrawable(R.drawable.cell_border));
+                            setNotSelected(oldTextField);
                         }
                         if (!currentTextField.getCell().isFromBeginning()) {
-                            currentTextField.setBackground(currentTextField.getResources().getDrawable(R.drawable.cell_marked));
+                            setSelected(currentTextField);
                         }
                     }
                 });
@@ -63,8 +64,16 @@ public class FieldUI {
     }
 
     public void setCurrentTextField(TextField currentTextField) {
-        this.currentTextField.setBackground(this.currentTextField.getResources().getDrawable(R.drawable.cell_border));
+        setNotSelected(this.currentTextField);
         this.currentTextField = currentTextField;
+    }
+
+    public void setSelected(TextField textField) {
+        textField.setBackground(textField.getResources().getDrawable(R.drawable.cell_marked));
+    }
+
+    public void setNotSelected(TextField textField) {
+        textField.setBackground(textField.getResources().getDrawable(R.drawable.cell_border));
     }
 
     public int getCOLOR_GENERATOR() {
