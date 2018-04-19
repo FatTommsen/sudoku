@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="de.fhaachen.navi.sudoku.GameActivity">
+    <group>
+    <item
+        android:id="@+id/action_newGame"
+        android:orderInCategory="100"
+        android:title="@string/new_game"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_deleteUserEntry"
+        android:orderInCategory="100"
+        android:title="@string/zuruecksetzten"
+        app:showAsAction="never" />
+    </group>
+</menu>
