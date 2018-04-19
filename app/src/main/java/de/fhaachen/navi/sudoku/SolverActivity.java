@@ -90,18 +90,25 @@ public class SolverActivity extends AppCompatActivity {
     }
 
 
-    public void solveSudoku(View view){
-        for (int i = 0; i < 9; i++){
-            for (int j = 0; j < 9; j++){
+    public void solveSudoku(boolean bTipp) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
                 TextField tf = fieldUI.getTextField(i, j);
-                if (!tf.getText().toString().equals(" ")){
+                if (!tf.getText().toString().equals(" ")) {
                     tf.setTextColor(Color.BLACK);
                 }
-
             }
         }
-        fieldUI.solveTheSudoku();
+        fieldUI.solveTheSudoku( bTipp );
+    }
 
+    public void solve(View view){
+        solveSudoku( false );
+
+    }
+
+    public void getTipp(View view){
+        solveSudoku( true );
     }
 
 

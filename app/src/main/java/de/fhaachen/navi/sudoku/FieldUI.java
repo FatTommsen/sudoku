@@ -86,7 +86,7 @@ public class FieldUI {
 
 
 
-    public void solveTheSudoku() {
+    public void solveTheSudoku( boolean bTipp ) {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 if (!sudoku[i][j].getText().toString().equals(" ")) {
@@ -114,26 +114,55 @@ public class FieldUI {
                     .show();
             //Meldung an User nicht nur eine Lösung vorhanden
         }
+        else if ( mode == Solver.Mode.UniqueAbort && bTipp ){
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setTitle("")
+                    .setMessage("Das Sudoku hat mehrere Lösungen.\nEin Tipp kann nicht erzeugt werden.")
+                    .setNegativeButton("Okay", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            return;
+                        }
+                    })
+                    .show();
+            }
         else{
             solver.solve();
-            if (mode == Solver.Mode.UniqueAbort) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("")
-                        .setMessage("Das Sudoku hat mehrere Lösungen.\nDies ist eine davon.")
-                        .setNegativeButton("Okay", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                return;
-                            }
-                        })
-                        .setPositiveButton("zurücksetzen", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                reset();
-                                return;
-                            }
-                        })
-                        .show();
+            if( bTipp ){
+                if( currentTextField == null ){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("")
+                            .setMessage("Kein Feld ausgewählt.")
+                            .setNegativeButton("Okay", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    return;
+                                }
+                            })
+                            .show();
+                }
+                else {
+                    currentTextField.setText( currentTextField.getCell().getValue() + "" );
+                }
             }
-            showSolution();
+            else {
+                if (mode == Solver.Mode.UniqueAbort) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("")
+                            .setMessage("Das Sudoku hat mehrere Lösungen.\nDies ist eine davon.")
+                            .setNegativeButton("Okay", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    return;
+                                }
+                            })
+                            .setPositiveButton("zurücksetzen", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    reset();
+                                    return;
+                                }
+                            })
+                            .show();
+                }
+                showSolution();
+            }
             f.resetAllValues();
         }
     }
@@ -286,5 +315,6 @@ public class FieldUI {
                 tmp.setFromBeginning( false );
             }
         }
+
     }
 }
