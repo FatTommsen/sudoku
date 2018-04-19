@@ -30,11 +30,7 @@ public class FieldUI {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 final TextField textField = new TextField(context, f.getCell(j, i));
-
-                textField.setMinimumWidth(size - 6);
-                textField.setWidth(size - 6);
-                textField.setMinimumHeight(size - 6);
-                textField.setHeight(size - 6);
+                textField.setSize(size);
 
                 boxes.get((i / 3) * 3 + j / 3).add(textField);
                 sudoku[i][j] = textField;
